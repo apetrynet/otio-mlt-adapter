@@ -1,0 +1,3 @@
+include *.txt
+recursive-include otio_mlt_adapter *.py
+recursive-include tests *.py
