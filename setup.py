@@ -24,9 +24,10 @@ setuptools.setup(
     install_requires=[
         "OpenTimelineIO >= 0.12.0"
     ],
-    extra_requires={
+    extras_require={
         "dev": [
-            "pytest >= 3.7"
+            "pytest",
+            "twine"
         ]
     },
     classifiers=[

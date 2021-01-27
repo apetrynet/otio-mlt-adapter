@@ -1,0 +1,5 @@
+.pytest_cache
+venv
+otio_mlt_adapter.egg-info
+dist
+build

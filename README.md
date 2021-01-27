@@ -1,9 +1,9 @@
 # OpenTimelineIO MLT Adapter
 
-The MLT adapter currently only supports writing simplified mlt xml files
-geared towards use with the "melt" command line video editor.
-
-Example: `melt my_converted_otio_file.mlt [OPTIONS]`
+The MLT adapter is a write-only adapter to produce 
+[mlt xml](https://www.mltframework.org/docs/mltxml/) files
+for use with the [melt](https://www.mltframework.org/docs/melt/) command line 
+video editor.
 
 The motivation for writing this adapter is playback or
 rendering of mini-cuts for instance and not parsing project files for
@@ -20,13 +20,33 @@ parser, but please note that adds a third-party dependency to the adapter.
 
 For more info on the MLT visit the website: https://www.mltframework.org/
 
-## Installation
+## Feature Matrix
+| Feature | MLT   |
+| :------ | :---: |
+|Single Track of Clips    | W-O |
+|Multiple Video Tracks    | W-O |
+|Audio Tracks & Clips     | W-O |
+|Gap/Filler               | W-O |
+|Markers                  |  ✖  |
+|Nesting                  | W-O |
+|Transitions              | W-O |
+|Audio/Video Effects      |  ✖  |
+|Linear Speed Effects     | W-O |
+|Fancy Speed Effects      |  ✖  |
+|Color Decision List      | N/A |
+|Image Sequence Reference | W-O |
 
+
+## Installation
+The easiest way to install the adapter is through pip
 ```python
 pip install otio-mlt-adapter
 ```
+If you choose to download the source code and place it in an alternative 
+location, make sure you add the path to the `plugin_manifest.json` file to
+the `OTIO_PLUGIN_MANIFEST_PATH` environment variable. 
 
-## Usage Command Line
+## Usage with command line tools
 ```bash
 # Straight conversion from otio -> mlt
 otioconvert -i source_timeline.otio -o destination_timeline.mlt
@@ -35,7 +55,7 @@ otioconvert -i source_timeline.otio -o destination_timeline.mlt
 otioconvert -i source_timeline.otio -o destination_timeline.mlt -A colorspace=709
 ```
 
-## Usage Python
+## Usage in python
 ```python
 import opentimelineio as otio
 
@@ -43,7 +63,8 @@ import opentimelineio as otio
 timeline = otio.adapters.read_from_file('source_timeline.otio')
 otio.adapters.write_to_file(timeline, 'converted_timeline.mlt')
 
-timeline1 = otio.adapters.read_from_file('source_timeline.otio')
+# Conversion with adapter argument
+timeline = otio.adapters.read_from_file('source_timeline.otio')
 otio.adapters.write_to_file(timeline, 'converted_timeline.mlt', colorspace=709)
 ```
 
