@@ -15,7 +15,6 @@ SUPPORTED_TIME_EFFECTS = (
 
 
 class MLTAdapter(object):
-    """HEEHEHEH"""
     def __init__(self, input_otio, **profile_data):
         self.input_otio = input_otio
         self.profile_data = profile_data
