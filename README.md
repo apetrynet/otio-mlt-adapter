@@ -1,52 +1,30 @@
 # MLT Adapter for OpenTimelineIO 
 
-The MLT adapter is a write-only adapter to produce 
-[mlt xml](https://www.mltframework.org/docs/mltxml/) files
-for use with the [melt](https://www.mltframework.org/docs/melt/) command line 
-video editor.
+This is an MLT plugin adapter for [OpenTimelineIO](http://opentimeline.io/) <br>
+The MLT adapter produces mlt flavored [xml](https://www.mltframework.org/docs/mltxml/) 
+files used in conjunction with [melt](https://www.mltframework.org/docs/melt/) 
+to preview or render timelines.
 
-The motivation for writing this adapter is playback or
-rendering of mini-cuts for instance and not parsing project files for
-applications based on MLT such as kdenlive, Shotcut etc.
-There already exists an adapter for kdenlive files in OTIO.
+The adapter is a write-only adapter meaning it can only produce `.mlt` files
+and not parse them. For parsing dialects of the mlt format please check out one 
+of the other adapters listed [here](https://github.com/PixarAnimationStudios/OpenTimelineIO/wiki/Tools-and-Projects-Using-OpenTimelineIO).
 
-Therefore, reading of mlt files is not supported at the moment.
-This is also partly due to the flexible nature of the MLT format making it a
-bit hard to write a solid parser based on etree.
-
-If someone wants to implement parsing/reading of mlt files feel free to do so.
-You might want to use the python-mlt bindings available for a more robust
-parser, but please note that adds a third-party dependency to the adapter.
-
-For more info on the MLT visit the website: https://www.mltframework.org/
-
-## Feature Matrix
-| Feature                 | MLT |
-| :---------------------- | :-: |
-|Single Track of Clips    | W-O |
-|Multiple Video Tracks    | W-O |
-|Audio Tracks & Clips     | W-O |
-|Gap/Filler               | W-O |
-|Markers                  |  ✖  |
-|Nesting                  | W-O |
-|Transitions              | W-O |
-|Audio/Video Effects      |  ✖  |
-|Linear Speed Effects     | W-O |
-|Fancy Speed Effects      |  ✖  |
-|Color Decision List      | N/A |
-|Image Sequence Reference | W-O |
+For more info on the MLT please visit: [www.mltframework.org](https://www.mltframework.org)
 
 
 ## Installation
-The easiest way to install the adapter is through pip
+
+The easiest way to install the adapter is with pip directly from PyPi
 ```bash
 pip install otio-mlt-adapter
 ```
-If you choose to download the source code and place it in an alternative 
+If you choose to download the source code and place the package in an alternative 
 location, make sure you add the path to the `plugin_manifest.json` file to
 the `OTIO_PLUGIN_MANIFEST_PATH` environment variable. 
 
-## Usage with command line tools
+
+## Usage in OTIO command line tools
+
 ```bash
 # Straight conversion from otio -> mlt
 otioconvert -i source_timeline.otio -o destination_timeline.mlt
@@ -55,7 +33,9 @@ otioconvert -i source_timeline.otio -o destination_timeline.mlt
 otioconvert -i source_timeline.otio -o destination_timeline.mlt -A colorspace=709
 ```
 
+
 ## Usage in python
+
 ```python
 import opentimelineio as otio
 
@@ -68,14 +48,33 @@ timeline = otio.adapters.read_from_file('source_timeline.otio')
 otio.adapters.write_to_file(timeline, 'converted_timeline.mlt', colorspace=709)
 ```
 
-## Development
-```bash
-pip install -e .[dev]
-```
 
-### NOTES
-    Audio handling is a bit limited. Audio clips that have the same source
-    in video track will be ignored as MLT will include audio from the video
-    track by default.
+## Supported OTIO Features
 
-    Effects directly on Track and Stack is currently not implemented
+| OTIO Feature            | MLT Adapter |
+| :---------------------- | :---------: |
+|Single Track of Clips    | W-O         |
+|Multiple Video Tracks    | W-O         |
+|Audio Tracks & Clips     | W-O         |
+|Gap/Filler               | W-O         |
+|Markers                  |  ✖          |
+|Nesting                  | W-O         |
+|Transitions              | W-O         |
+|Audio/Video Effects      |  ✖          |
+|Linear Speed Effects     | W-O         |
+|Fancy Speed Effects      |  ✖          |
+|Color Decision List      | N/A         |
+|Image Sequence Reference | W-O         |
+
+
+## Known limitations
+* Audio handling is a bit limited. Clips in audio tracks that share the same 
+  source as the video clip above will be ignored as MLT will include the audio 
+  from the video track by default.
+
+* Effects directly applied on Tracks or Stacks are currently not implemented
+
+
+
+## Feedback
+Please submit bug reports etc. through github [issues](https://github.com/apetrynet/otio-mlt-adapter/issues)
