@@ -4,6 +4,8 @@ from xml.etree import ElementTree as et
 import opentimelineio as otio
 from opentimelineio.exceptions import AdapterDoesntSupportFunctionError
 
+OTIO_VERSION = tuple(otio.__version__.split('.'))
+
 
 def test_single_clip():
     clip1 = otio.schema.Clip(
@@ -124,6 +126,10 @@ def test_external_reference():
     assert producer2_e.attrib.get('out') is None
 
 
+@pytest.mark.skipif(
+    OTIO_VERSION < (0, 13, 0),
+    reason="ImageSequenceReference was introduced in 0.13.0"
+)
 def test_image_sequence():
     clip1 = otio.schema.Clip(
         name='imageseq',
