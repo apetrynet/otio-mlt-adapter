@@ -1,12 +1,10 @@
-from __future__ import print_function
 import pytest
 from xml.etree import ElementTree as et
 
 import opentimelineio as otio
 from opentimelineio.exceptions import AdapterDoesntSupportFunctionError
 
-OTIO_VERSION = tuple(otio.__version__.split('.'))
-print(OTIO_VERSION)
+OTIO_VERSION = tuple(map(int, otio.__version__.split('.')))
 
 
 def test_single_clip():
