@@ -128,7 +128,8 @@ def test_external_reference():
 
 @pytest.mark.skipif(
     OTIO_VERSION < (0, 13, 0),
-    reason="ImageSequenceReference was introduced in 0.13.0"
+    reason="ImageSequenceReference was introduced in 0.13.0 "
+           "This is v{version}".format(version=otio.__version__)
 )
 def test_image_sequence():
     clip1 = otio.schema.Clip(
