@@ -10,6 +10,8 @@ SUPPORTED_TIME_EFFECTS = (
     otio.schema.FreezeFrame
 )
 
+"""MLT XML write-only adapter for use with melt."""
+
 
 class MLTAdapter(object):
     def __init__(self, input_otio, **profile_data):
