@@ -1,3 +1,6 @@
+
+"""OpenTimelineIO MLT XML adapter for use with melt."""
+
 import opentimelineio as otio
 from copy import deepcopy
 from fractions import Fraction
@@ -10,10 +13,9 @@ SUPPORTED_TIME_EFFECTS = (
     otio.schema.FreezeFrame
 )
 
-"""MLT XML write-only adapter for use with melt."""
-
 
 class MLTAdapter(object):
+    """HEEHEHEH"""
     def __init__(self, input_otio, **profile_data):
         self.input_otio = input_otio
         self.profile_data = profile_data
