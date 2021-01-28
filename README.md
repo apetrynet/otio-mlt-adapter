@@ -1,4 +1,4 @@
-# OpenTimelineIO MLT Adapter
+# MLT Adapter for OpenTimelineIO 
 
 The MLT adapter is a write-only adapter to produce 
 [mlt xml](https://www.mltframework.org/docs/mltxml/) files
@@ -21,8 +21,8 @@ parser, but please note that adds a third-party dependency to the adapter.
 For more info on the MLT visit the website: https://www.mltframework.org/
 
 ## Feature Matrix
-| Feature | MLT   |
-| :------ | :---: |
+| Feature                 | MLT |
+| :---------------------- | :-: |
 |Single Track of Clips    | W-O |
 |Multiple Video Tracks    | W-O |
 |Audio Tracks & Clips     | W-O |
@@ -39,7 +39,7 @@ For more info on the MLT visit the website: https://www.mltframework.org/
 
 ## Installation
 The easiest way to install the adapter is through pip
-```python
+```bash
 pip install otio-mlt-adapter
 ```
 If you choose to download the source code and place it in an alternative 
