@@ -75,6 +75,9 @@ otio.adapters.write_to_file(timeline, 'converted_timeline.mlt', colorspace=709)
 * Effects directly applied on Tracks or Stacks are currently not implemented
 
 
-
 ## Feedback
 Please submit bug reports etc. through github [issues](https://github.com/apetrynet/otio-mlt-adapter/issues)
+
+
+## License
+MLT XML adapter is released under the [MIT License](https://github.com/apetrynet/otio-mlt-adapter/blob/main/LICENSE.txt)
