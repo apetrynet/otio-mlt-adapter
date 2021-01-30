@@ -1,9 +1,10 @@
 name: Create draft release
 
 on:
-  create:
+  push:
     tags:
       - '*'
+      branches: ['main']
 
 jobs:
   build:
