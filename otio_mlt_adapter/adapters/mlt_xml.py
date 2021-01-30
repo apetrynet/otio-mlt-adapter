@@ -380,7 +380,10 @@ class MLTAdapter(object):
         bg_e = self.create_solid('black', length)
 
         # Add producer to list
-        producer_e = self.producers['video'].setdefault(bg_e.attrib['id'], bg_e)
+        producer_e = self.producers['video'].setdefault(
+            bg_e.attrib['id'],
+            bg_e
+        )
 
         # store producer in order list for insertion later
         self.producers.setdefault('producer_order_', []).append(producer_e)
@@ -429,7 +432,7 @@ class MLTAdapter(object):
                 producer_e = self.get_producer(item, is_audio_track)
 
                 if is_audio_track:
-                    # Skip "duplicate" audio element for matching video producer
+                    # Skip "duplicate" audio elmnt for matching video producer
                     key_id = producer_e.attrib['id'] + producer_e[0].text
                     if key_id in self.producers['video']:
                         continue
