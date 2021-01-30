@@ -42,11 +42,11 @@ jobs:
 
     - name: Lint with flake8
       run: |
-        flake8 otio_mlt_adapter --show-source --statistics
+        flake8 --show-source --statistics
 
     - name: Test with pytest
       run: |
-        pytest -W ignore::DeprecationWarning
+        pytest
 
     - name: Check registration of plugin
       run: |
@@ -78,11 +78,11 @@ jobs:
 
     - name: Lint with flake8
       run: |
-        flake8 otio_mlt_adapter --show-source --statistics
+        flake8 --show-source --statistics
 
     - name: Test with pytest
       run: |
-        pytest -W ignore::DeprecationWarning
+        pytest
 
     - name: Check registration of plugin
       run: |

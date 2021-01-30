@@ -115,7 +115,7 @@ def test_external_reference():
     )
     property_text = producer1_e.findtext('property', path)
     assert property_text is not None
-    assert float(producer1_e.attrib['in']) ==  0
+    assert float(producer1_e.attrib['in']) == 0
     assert float(producer1_e.attrib['out']) == 99
 
     # Producers with no external reference get clip.name as "path"
@@ -503,7 +503,7 @@ def test_video_fade_in():
     assert tractor2_e is not None
 
     tracks2 = tractor2_e.findall('./track')
-    assert tracks2[0].attrib['producer'] =='solid_black'
+    assert tracks2[0].attrib['producer'] == 'solid_black'
     assert (
         tracks2[1].attrib['producer'] ==
         'clip2_transition_post'
@@ -591,7 +591,7 @@ def test_video_fade_out():
     tractor2_e = tree.find('./tractor/[@id="tractor0"]')
 
     tracks = tractor2_e.findall('./multitrack/track')
-    assert tracks[1].attrib['producer'] =='fadeout'
+    assert tracks[1].attrib['producer'] == 'fadeout'
 
     transition_e = tree.find('./tractor/[@id="transition_tractor0"]')
     assert (

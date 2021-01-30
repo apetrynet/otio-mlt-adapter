@@ -31,6 +31,9 @@ otioconvert -i source_timeline.otio -o destination_timeline.mlt
 
 # Pass adapter arguments
 otioconvert -i source_timeline.otio -o destination_timeline.mlt -A colorspace=709
+
+# Play timeline in melt
+melt destination_timeline.mlt
 ```
 
 
