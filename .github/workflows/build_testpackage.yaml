@@ -1,8 +1,7 @@
-name: Upload Python Package to PyPi
+name: Upload Python Package to TestPyPi
 
 on:
-  release:
-    types: [created]
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -23,4 +22,4 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
       run: |
         python setup.py sdist bdist_wheel --universal
-        twine upload --repository pypi dist/*
+        twine upload --repository testpypi dist/*
