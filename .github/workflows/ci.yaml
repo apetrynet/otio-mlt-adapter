@@ -53,7 +53,7 @@ jobs:
 
     - name: Check registration of plugin
       run: |
-        otiopluginfo
+        [[ ! -z $(otiopluginfo mlt_xml | grep mlt_xml) ]]
 
   test-otio-0130:
     name: "OpenTimelineIO 0.13.0"
@@ -92,4 +92,4 @@ jobs:
 
     - name: Check registration of plugin
       run: |
-        otiopluginfo
+        [[ ! -z $(otiopluginfo mlt_xml | grep mlt_xml) ]]
