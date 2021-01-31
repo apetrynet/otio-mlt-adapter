@@ -4,6 +4,8 @@ from xml.etree import ElementTree as et
 import opentimelineio as otio
 from opentimelineio.exceptions import AdapterDoesntSupportFunctionError
 
+from otio_mlt_adapter.adapters.mlt_xml import MLTAdapter
+
 OTIO_VERSION = tuple(map(int, otio.__version__.split('.')))
 
 
@@ -898,7 +900,7 @@ def test_ignoring_generator_reference():
     )
 
     producer_e = tree.find('./producer/[@id="colorbars"]')
-    producer_e is not None
+    assert producer_e is not None
 
 
 def test_passing_adapter_arguments():
@@ -926,6 +928,21 @@ def test_passing_adapter_arguments():
     assert profile_e is not None
     assert int(profile_e.attrib['width']) == 1920
     assert int(profile_e.attrib['height']) == 1080
+
+
+def test_value_to_string_conversion():
+    tl = otio.schema.Timeline()
+    mlt = MLTAdapter(tl)
+    data = {
+        'int_key': 42,
+        'float_key': 42.0,
+        'str_key': '43'
+    }
+    converted = mlt._stringify_values(data)
+
+    assert isinstance(converted['int_key'], str)
+    assert isinstance(converted['float_key'], str)
+    assert isinstance(converted['str_key'], str)
 
 
 def test_raise_error_mlt_on_read():

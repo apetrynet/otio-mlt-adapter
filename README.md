@@ -1,5 +1,8 @@
 # MLT Adapter for OpenTimelineIO 
 
+![Supported Versions](https://img.shields.io/badge/opentimelineio-0.12.1%2C%200.13.0-green.svg)
+![Supported Versions](https://img.shields.io/badge/python-2.7%2C%203.7%2C%203.8-blue.svg)
+
 This is an MLT plugin adapter for [OpenTimelineIO](http://opentimeline.io/) <br>
 The MLT adapter produces mlt flavored [xml](https://www.mltframework.org/docs/mltxml/) 
 files used in conjunction with [melt](https://www.mltframework.org/docs/melt/) 
@@ -16,14 +19,18 @@ For more info on the MLT please visit: [www.mltframework.org](https://www.mltfra
 
 The easiest way to install the adapter is with pip directly from PyPi
 ```bash
+# Install
 pip install otio-mlt-adapter
+
+# Check if plugin installed correctly
+otiopluginfo mlt_xml
 ```
 If you choose to download the source code and place the package in an alternative 
 location, make sure you add the path to the `plugin_manifest.json` file to
 the `OTIO_PLUGIN_MANIFEST_PATH` environment variable. 
 
 
-## Usage in OTIO command line tools
+## Usage in command line tools
 
 ```bash
 # Straight conversion from otio -> mlt
