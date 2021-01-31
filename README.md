@@ -1,18 +1,19 @@
-# MLT Adapter for OpenTimelineIO 
+# MLT XML Adapter for OpenTimelineIO 
 
-![Supported Versions](https://img.shields.io/badge/opentimelineio-0.12.1%2C%200.13.0-green.svg)
+![Supported Versions](https://img.shields.io/badge/OpenTimelineIO-0.12.1%2C%200.13.0-green.svg)
 ![Supported Versions](https://img.shields.io/badge/python-2.7%2C%203.7%2C%203.8-blue.svg)
 
-This is an MLT plugin adapter for [OpenTimelineIO](http://opentimeline.io/) <br>
-The MLT adapter produces mlt flavored [xml](https://www.mltframework.org/docs/mltxml/) 
+When installed, the plugin adds itself to the available adapters in 
+[OpenTimelineIO](http://opentimeline.io/) <br>
+The MLT XML adapter produces mlt flavored [xml](https://www.mltframework.org/docs/mltxml/) 
 files used in conjunction with [melt](https://www.mltframework.org/docs/melt/) 
 to preview or render timelines.
 
-The adapter is a write-only adapter meaning it can only produce `.mlt` files
-and not parse them. For parsing dialects of the mlt format please check out one 
+The adapter is a write-only adapter and can only produce `.mlt` files, 
+not parse them. For parsing dialects of the mlt format please check out one 
 of the other adapters listed [here](https://github.com/PixarAnimationStudios/OpenTimelineIO/wiki/Tools-and-Projects-Using-OpenTimelineIO).
 
-For more info on the MLT please visit: [www.mltframework.org](https://www.mltframework.org)
+For more information on MLT please visit: [www.mltframework.org](https://www.mltframework.org)
 
 
 ## Installation
@@ -26,8 +27,8 @@ pip install otio-mlt-adapter
 otiopluginfo mlt_xml
 ```
 If you choose to download the source code and place the package in an alternative 
-location, make sure you add the path to the `plugin_manifest.json` file to
-the `OTIO_PLUGIN_MANIFEST_PATH` environment variable. 
+location, make sure you append the full path to the `plugin_manifest.json` file 
+to the `OTIO_PLUGIN_MANIFEST_PATH` environment variable. 
 
 
 ## Usage in command line tools
