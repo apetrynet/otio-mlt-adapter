@@ -2,7 +2,7 @@
 
 ![Supported Versions](https://img.shields.io/badge/OpenTimelineIO-0.12.1%2C%200.13.0-green.svg)
 ![Supported Versions](https://img.shields.io/badge/python-2.7%2C%203.7%2C%203.8-blue.svg)
-![Run tests](https://github.com/apetrynet/otio-mlt-adapter/workflows/Run%20tests/badge.svg?branch=main&event=default)
+![Run tests](https://github.com/apetrynet/otio-mlt-adapter/workflows/Run%20tests/badge.svg?branch=main&event=push)
 
 When installed, the plugin adds itself to the available adapters in 
 [OpenTimelineIO](http://opentimeline.io/) <br>
