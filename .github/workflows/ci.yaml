@@ -17,6 +17,9 @@ on:
 
 jobs:
   test-otio-0121:
+    env:
+      plugin_name: "mlt_xml"
+
     name: "OpenTimelineIO 0.12.1"
     runs-on: ubuntu-latest
     strategy:
@@ -50,9 +53,12 @@ jobs:
 
     - name: Check registration of plugin
       run: |
-        [[ ! -z $(otiopluginfo mlt_xml | grep mlt_xml) ]]
+        [[ ! -z $(otiopluginfo mlt_xml | grep ${{ env.plugin_name }}) ]]
 
   test-otio-0130:
+    env:
+      plugin_name: "mlt_xml"
+
     name: "OpenTimelineIO 0.13.0"
     runs-on: ubuntu-latest
     strategy:
@@ -86,4 +92,4 @@ jobs:
 
     - name: Check registration of plugin
       run: |
-        [[ ! -z $(otiopluginfo mlt_xml | grep mlt_xml) ]]
+        [[ ! -z $(otiopluginfo mlt_xml | grep ${{ env.plugin_name }}) ]]
