@@ -20,7 +20,7 @@ jobs:
     env:
       plugin_name: "mlt_xml"
 
-    name: "OpenTimelineIO 0.13.0"
+    name: "Test in OpenTimelineIO"
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -28,13 +28,16 @@ jobs:
         otio-versions: [0.12.1, 0.13.0]
 
     steps:
+    - name: Setup otio version
+      with:
+        otio-version: ${{ matrix.otio-version }}
+
     - uses: actions/checkout@v2
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-        otio-version: ${{ matrix.otio-version }}
 
     - name: Install dependencies
       run: |
