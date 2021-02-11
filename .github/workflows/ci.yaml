@@ -92,4 +92,4 @@ jobs:
 
     - name: Check registration of plugin
       run: |
-        [[ ! -z $(otiopluginfo env.plugin_name | grep ${{ env.plugin_name }}) ]]
+        [[ ! -z $(otiopluginfo ${{ env.plugin_name }} | grep ${{ env.plugin_name }}) ]]
