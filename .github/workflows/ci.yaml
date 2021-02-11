@@ -53,7 +53,7 @@ jobs:
 
       - name: Check registration of plugin
         run: |
-          [[ ! -z $(otiopluginfo mlt_xml | grep ${{ env.plugin_name }}) ]]
+          [[ ! -z $(otiopluginfo ${{ env.plugin_name }} | grep ${{ env.plugin_name }}) ]]
 
   test-otio-0121:
     env:
@@ -92,4 +92,4 @@ jobs:
 
     - name: Check registration of plugin
       run: |
-        [[ ! -z $(otiopluginfo mlt_xml | grep ${{ env.plugin_name }}) ]]
+        [[ ! -z $(otiopluginfo env.plugin_name | grep ${{ env.plugin_name }}) ]]

@@ -7,7 +7,6 @@ on:
 
 jobs:
   deploy:
-    needs: tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -22,7 +21,7 @@ jobs:
     - name: Build and publish
       env:
         TWINE_USERNAME: __token__
-        TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        TWINE_PASSWORD: ${{ secrets.PYPI_RELEASE_TOKEN }}
       run: |
         python setup.py sdist bdist_wheel --universal
         twine upload --repository testpypi dist/*
