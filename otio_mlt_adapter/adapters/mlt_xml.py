@@ -414,14 +414,18 @@ class MLTAdapter(object):
         if parent.tag == 'playlist':
             element_type = 'entry'
 
-        parent.append(
-            et.Element(element_type, producer=playlist_e.attrib['id'])
-        )
-
         # Used to check if we need to add audio elements or not
         is_audio_track = False
         if hasattr(track, 'kind'):
             is_audio_track = track.kind == 'Audio'
+
+        # Insert audio before video
+        element = et.Element(element_type, producer=playlist_e.attrib['id'])
+        if is_audio_track:
+            parent.insert(1, element)
+
+        else:
+            parent.append(element)
 
         # Iterate over items in track, expanding transitions
         expanded_track = otio.algorithms.track_with_expanded_transitions(track)

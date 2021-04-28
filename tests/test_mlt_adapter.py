@@ -298,8 +298,12 @@ def test_timeline_with_tracks():
     timeline = otio.schema.Timeline()
     track1 = otio.schema.Track('video1')
     track2 = otio.schema.Track('video2')
+    track3 = otio.schema.Track('audio1', kind=otio.schema.TrackKind.Audio)
+    track4 = otio.schema.Track('audio2', kind=otio.schema.TrackKind.Audio)
     timeline.tracks.append(track1)
     timeline.tracks.append(track2)
+    timeline.tracks.append(track3)
+    timeline.tracks.append(track4)
 
     track1.append(clip1)
     track1.append(gap1)
@@ -308,6 +312,16 @@ def test_timeline_with_tracks():
     track2.append(gap2)
     track2.append(clip3)
 
+    # Same as video1
+    track3.append(clip1.clone())
+    track3.append(gap1.clone())
+    track3.append(clip2.clone())
+
+    # Same as video1
+    track4.append(clip1.clone())
+    track4.append(gap1.clone())
+    track4.append(clip2.clone())
+
     tree = et.fromstring(
         otio.adapters.write_to_string(timeline, 'mlt_xml')
     )
@@ -315,9 +329,9 @@ def test_timeline_with_tracks():
     playlists = tree.findall('./playlist')
     tracks = tree.findall('./tractor/multitrack/track')
 
-    # Check for background and the two tracks == 3
-    assert len(playlists) == 3
-    assert len(tracks) == 3
+    # Check for background and the four tracks == 5
+    assert len(playlists) == 5
+    assert len(tracks) == 5
 
     track1_e = tree.find('./playlist/[@id="video1"]')
 
@@ -360,6 +374,13 @@ def test_timeline_with_tracks():
         float(track2_e[1].attrib['out']) ==
         clip3.source_range.end_time_inclusive().value
     )
+
+    # Check if first tracks after background are audio
+    track3_e = tracks[2]
+    assert track3_e.attrib['producer'] == 'audio1'
+
+    track4_e = tracks[1]
+    assert track4_e.attrib['producer'] == 'audio2'
 
 
 def test_nested_timeline():
