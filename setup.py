@@ -8,7 +8,7 @@ setuptools.setup(
     name="otio-mlt-adapter",
     author="Daniel Flehner Heen",
     author_email="flehnerheener@gmail.com",
-    version="0.2.0",
+    version="0.3.0",
     description="MLT adapter for OpenTimelineIO",
     long_description=long_description,
     long_description_content_type="text/markdown",
