@@ -209,6 +209,7 @@ def test_image_sequence():
             str(err.value)
     )
 
+
 def test_de_duplication_of_producers():
     clipname = 'clip'
     clip1 = otio.schema.Clip(
