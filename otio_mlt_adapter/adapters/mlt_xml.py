@@ -589,6 +589,8 @@ def write_to_string(input_otio, **profile_data):
     `global_start_time` set, the frame rate will be set automatically.
     Please note that numeric values must be passed as strings.
     Please check MLT website for more info on profiles.
+    You may pass an "image_producer" argument with "pixbuf" to change
+    image sequence producer. The default image sequence producer is "image2"
 
     :return: MLT formatted XML
     :rtype: `str`
