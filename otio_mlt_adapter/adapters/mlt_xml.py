@@ -17,6 +17,17 @@ SUPPORTED_TIME_EFFECTS = (
 class MLTAdapter(object):
     def __init__(self, input_otio, **profile_data):
         self.input_otio = input_otio
+
+        # Check for image producer in adapter args
+        self.image_producer = 'image2'
+        if 'image_producer' in profile_data:
+            self.image_producer = profile_data.pop('image_producer')
+
+        if self.image_producer not in ['image2', 'pixbuf']:
+            raise ValueError(
+                'Image producer must be "image2" or "pixbuf"'
+            )
+
         self.profile_data = profile_data
 
         # MLT root tag
@@ -154,13 +165,18 @@ class MLTAdapter(object):
 
             elif hasattr(otio_item.media_reference, 'abstract_target_url'):
                 is_sequence = True
+                start_number_prop = 'start_number'
+                if self.image_producer == 'pixbuf':
+                    start_number_prop = 'begin'
+
                 target_url = otio_item.media_reference.abstract_target_url(
                     '%0{}d'.format(
                         otio_item.media_reference.frame_zero_padding
                     )
                 )
-                target_url += '?begin={}'.format(
-                    otio_item.media_reference.start_frame
+                target_url += '?{propname}={startnum}'.format(
+                    propname=start_number_prop,
+                    startnum=otio_item.media_reference.start_frame
                 )
 
             if target_url:
@@ -200,7 +216,7 @@ class MLTAdapter(object):
                 producer.append(
                     self.create_property_element(
                         name='mlt_service',
-                        text='pixbuf'
+                        text=self.image_producer
                     )
                 )
 

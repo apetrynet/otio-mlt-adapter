@@ -162,16 +162,40 @@ def test_image_sequence():
     producer_e = tree.find('./producer/[@id="imageseq"]')
     assert producer_e is not None
 
-    abstract_url = '/path/to/files/image.%04d.png?begin=1001'
+    abstract_url = '/path/to/files/image.%04d.png?start_number=1001'
     assert (
         producer_e.find('./property/[@name="resource"]').text ==
         abstract_url
     )
+
+    # Default image2 producer
+    assert (
+        producer_e.find('./property/[@name="mlt_service"]').text ==
+        'image2'
+    )
+
+    # Pass alternative pixbuf argument
+    tree = et.fromstring(
+        otio.adapters.write_to_string(
+            track,
+            'mlt_xml',
+            image_producer='pixbuf'
+        )
+    )
+
+    producer_e = tree.find('./producer/[@id="imageseq"]')
+
+    # Overridden pixbuf producer
     assert (
         producer_e.find('./property/[@name="mlt_service"]').text ==
         'pixbuf'
     )
 
+    abstract_url = '/path/to/files/image.%04d.png?begin=1001'
+    assert (
+        producer_e.find('./property/[@name="resource"]').text ==
+        abstract_url
+    )
 
 def test_de_duplication_of_producers():
     clipname = 'clip'
