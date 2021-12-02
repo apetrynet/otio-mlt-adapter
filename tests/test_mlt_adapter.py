@@ -197,6 +197,18 @@ def test_image_sequence():
         abstract_url
     )
 
+    # Test unsupported image producer
+    with pytest.raises(ValueError) as err:
+        otio.adapters.write_to_string(
+            track,
+            'mlt_xml',
+            image_producer='nothinhere'
+        )
+    assert (
+            'Image producer must be "image2" or "pixbuf"' ==
+            str(err.value)
+    )
+
 def test_de_duplication_of_producers():
     clipname = 'clip'
     clip1 = otio.schema.Clip(
