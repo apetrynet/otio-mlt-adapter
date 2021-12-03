@@ -1,7 +1,7 @@
 # MLT XML Adapter for OpenTimelineIO 
 
-![Supported Versions](https://img.shields.io/badge/OpenTimelineIO-0.12.1%2C%200.13.0-green.svg)
-![Supported Versions](https://img.shields.io/badge/python-2.7%2C%203.7%2C%203.8-blue.svg)
+![Supported Versions](https://img.shields.io/badge/OpenTimelineIO-0.12.1%2C%200.13.0%2C%200.14.0-green.svg)
+![Supported Versions](https://img.shields.io/badge/python-2.7%2C%203.7%2C%203.8%2C%203.9-blue.svg)
 ![Unit tests](https://github.com/apetrynet/otio-mlt-adapter/workflows/tests/badge.svg?branch=main&event=push)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/otio-mlt-adapter?label=PyPi%20downloads)
 
@@ -40,7 +40,7 @@ to the `OTIO_PLUGIN_MANIFEST_PATH` environment variable.
 otioconvert -i source_timeline.otio -o destination_timeline.mlt
 
 # Pass adapter arguments
-otioconvert -i source_timeline.otio -o destination_timeline.mlt -A colorspace=709
+otioconvert -i source_timeline.otio -o destination_timeline.mlt -A colorspace=709 -A image_producer=pixbuf
 
 # Play timeline in melt
 melt destination_timeline.mlt
